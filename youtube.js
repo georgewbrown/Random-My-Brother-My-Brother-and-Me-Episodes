@@ -6,14 +6,18 @@
         const iframe = document.querySelector('#youtube_video');
 
         getrandomNumber = numberOfEpisodes => {
-            return randomNumber = Math.floor(Math.random() * Math.floor(numberOfEpisodes - numberOfUnlisted) + numberOfUnlisted);
-        }
+            const randomNumber = Math.floor(Math.random() * Math.floor(numberOfEpisodes - numberOfUnlisted) + numberOfUnlisted);
+            return randomNumber;
+        };
         
         getEpisodeBtn.addEventListener('click',  () => {
-            videoContainer.innerHTML = `<iframe id='youtube_video' width="560" height="315" src='https://www.youtube.com/embed/videoseries?list=PLt5zc-HxINkpJSBb_oeYVsSXgpxAlxQEc&index=${getrandomNumber(numberOfEpisodes)}' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
-            const iframe = document.querySelector("#youtube_video");
-            const videoTitle = iframe.contentWindow.document.querySelector('.ytp-title-link');
-            // const idk = videoTitle.querySelector('.yt-uix-sessionlink');
-            console.log(videoTitle);
-    
-        })
+            videoContainer.innerHTML = `<iframe id='youtube_video' width="560" height="315" src='https://www.youtube.com/embed/videoseries?list=PLt5zc-HxINkpJSBb_oeYVsSXgpxAlxQEc&index=${getrandomNumber(numberOfEpisodes)}' frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            var iframe = document.querySelector("#youtube_video");
+            if (iframe) {
+                const videoTitle = iframe.contentWindow.document.querySelector('.ytp-title-link');
+                var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+                var whatever = innerDoc.getElementById('player');
+                console.log(whatever);
+                // const idk = videoTitle.querySelector('.yt-uix-sessionlink');
+            }
+        });
